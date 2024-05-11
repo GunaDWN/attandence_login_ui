@@ -1,9 +1,14 @@
 import 'package:flutter/material.dart';
-import 'package:login_ui/Utils/colors.dart';
 
-class MySplashScreen extends StatelessWidget {
-  const MySplashScreen({super.key});
+class MySplashScreen extends StatefulWidget {
+  const MySplashScreen({Key? key}) : super(key: key);
 
+  @override
+  _MySplashScreenState createState() => _MySplashScreenState();
+}
+
+class _MySplashScreenState extends State<MySplashScreen> {
+  bool _isPasswordVisible = false;
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
@@ -18,7 +23,16 @@ class MySplashScreen extends StatelessWidget {
               height: 140,
               decoration: BoxDecoration(
                 shape: BoxShape.circle,
-                color: Colors.blue,
+                gradient: LinearGradient(
+                  begin: Alignment.topCenter,
+                  end: Alignment.bottomRight,
+                  stops: [0.0, 0.5, 1.0],
+                  colors: [
+                    Color(0xFF2C2373),
+                    Color(0xFF2C2373),
+                    Colors.yellow,
+                  ],
+                ),
               ),
             ),
           ),
@@ -30,7 +44,7 @@ class MySplashScreen extends StatelessWidget {
               height: 140,
               decoration: BoxDecoration(
                 shape: BoxShape.circle,
-                color: Colors.blue,
+                color: Color(0xFF2C2373),
                 border: Border.all(color: Colors.white, width: 10),
               ),
             ),
@@ -64,11 +78,11 @@ class MySplashScreen extends StatelessWidget {
             ),
           ),
           Positioned(
-            top: 350,
+            top: 345,
             left: MediaQuery.of(context).size.width / 2 - 175,
             child: Container(
               width: 350,
-              height: 50,
+              height: 53,
               margin: EdgeInsets.only(top: 50),
               child: TextField(
                 decoration: InputDecoration(
@@ -83,20 +97,37 @@ class MySplashScreen extends StatelessWidget {
             left: MediaQuery.of(context).size.width / 2 - 175,
             child: Container(
               width: 350,
-              height: 50,
+              height: 53,
               margin: EdgeInsets.only(top: 50),
-              child: TextField(
-                obscureText: true,
-                decoration: InputDecoration(
-                  border: OutlineInputBorder(),
-                  labelText: 'Password',
-                ),
+              child: Stack(
+                children: [
+                  TextField(
+                    obscureText: !_isPasswordVisible,
+                    decoration: InputDecoration(
+                      border: OutlineInputBorder(),
+                      labelText: 'Password',
+                    ),
+                  ),
+                  Positioned(
+                    right: 5,
+                    top: 5,
+                    child: IconButton(
+                      icon: Icon(_isPasswordVisible ? Icons.visibility : Icons.visibility_off),
+                      onPressed: () {
+                        setState(() {
+                          _isPasswordVisible = !_isPasswordVisible;
+                        });
+                      },
+                    ),
+                  ),
+                ],
               ),
             ),
           ),
+
           Positioned(
-            top: 520,
-            left: MediaQuery.of(context).size.width / 1 - 138,
+            top: 530,
+            left: MediaQuery.of(context).size.width / 1 - 132,
             child: Text(
               "Lupa Password",
               style: TextStyle(
@@ -108,7 +139,7 @@ class MySplashScreen extends StatelessWidget {
             ),
           ),
           Positioned(
-            top: 700,
+            top: 680,
             left: MediaQuery.of(context).size.width / 2 - 75,
             child: ElevatedButton(
               onPressed: () {},

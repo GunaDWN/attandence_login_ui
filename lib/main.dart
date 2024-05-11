@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:login_ui/Screen/spash_screen.dart';
+import 'package:login_ui/Screen/login_layout.dart';
 
 void main() {
   runApp(const MyApp());
