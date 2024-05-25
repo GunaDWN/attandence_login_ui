@@ -1,19 +1,24 @@
 import 'package:flutter/material.dart';
-import 'package:login_ui/Screen/login_layout.dart';
+import 'package:get/get.dart';
+import 'package:login_ui/Screen/splashScreen/splash_layout.dart';
 
 void main() {
+  WidgetsFlutterBinding.ensureInitialized();
   runApp(const MyApp());
 }
 
 class MyApp extends StatelessWidget {
-  const MyApp({super.key});
+  const MyApp({Key? key}) : super(key: key);
 
-  // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(
+    return GetMaterialApp(
+      title: 'Attendance App',
       debugShowCheckedModeBanner: false,
-      home: MySplashScreen(),
+      theme: ThemeData(
+        primarySwatch: Colors.purple,
+      ),
+      home: SplashScreen(),
     );
   }
 }
